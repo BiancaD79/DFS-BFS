@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace StackQueue
@@ -26,15 +22,45 @@ namespace StackQueue
             demo = new Graph();
             demo.Load("../../input.txt");
             demo.Dispersion(new PointF(pictureBox1.Width / 2, pictureBox1.Height / 2), 150);
+            
+            //BFS
             List<Vertex> t= demo.BFS(demo.vertices[0]);
+            
+            StringBuilder sb = new StringBuilder();
             foreach(Vertex v in t)
             {
-                listBox1.Items.Add(v.idx);
+                sb.Append(v.idx);
+                sb.Append(" ");
             }
+            listBox1.Items.Add(sb.ToString());
+
+            //DFS cu stack
+            t = demo.DFS(demo.vertices[0]);
+
+            sb.Clear();
+            foreach (Vertex v in t)
+            {
+                sb.Append(v.idx);
+                sb.Append(" ");
+            }
+            listBox1.Items.Add(sb.ToString());
+
+            //DFS recursiv
+            t = demo.DFS_Rec(demo.vertices[0]);
+            sb.Clear();
+            foreach (Vertex v in t)
+            {
+                sb.Append(v.idx);
+                sb.Append(" ");
+            }
+            listBox1.Items.Add(sb.ToString());
+
+            //dijkstra
+            int[] shortestDistances = demo.DijkstraMinDistance(demo.vertices[0]);
+            listBox1.Items.Add(String.Join(" ", shortestDistances));
+
             demo.Draw(grp);
             pictureBox1.Image = bmp;
-
-
 
             /*MyStack<int> myStack = new MyStack<int>();
             //GenericList<int> genericList = new GenericList<int>();

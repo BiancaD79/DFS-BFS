@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace StackQueue
 {
     public class MyStack<T> : GenericList<T>
@@ -25,6 +20,11 @@ namespace StackQueue
         public override string View()
         {
             return "Stack: " + base.View();
+        }
+
+        public virtual bool IsEmpty()
+        {
+            return values.Length == 0;
         }
     }
 }
